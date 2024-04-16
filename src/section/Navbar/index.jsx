@@ -7,7 +7,9 @@ const Navbar = () => {
     return (
         <div className=" bg-primary py-2 px-[100px] flex flex-row items-center justify-between gap-4">
             <div className="p-1 px-2 rounded-full bg-primarySubCon hover:scale-125 transition-all">
+                <Link to={'/'}>
                 <div className="text-primary">icon</div>
+                </Link>
             </div>
             <div className=" w-1/3">
                 <input
