@@ -4,7 +4,7 @@ import Input from "../../components/Input";
 
 const Register = () => {
     return (
-        <div className="flex  items-center justify-center bg-primaryBg h-[95vh] bg-[#d8c8db]">
+        <div className="flex items-center justify-center  h-[95vh] bg-[#d8c8db]">
             <div className=" p-10  border rounded-3xl backdrop-blur-xl bg-white/30 shadow-xl hover:shadow-primary/30 transition-all duration-300  my-10 w-[400px] flex items-center justify-center">
                 <div className=" w-full h-full">
                     <div className="text-3xl text-primary font-bold">
