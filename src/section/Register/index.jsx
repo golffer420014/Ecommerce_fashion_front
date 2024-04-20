@@ -9,19 +9,20 @@ const Register = () => {
         lastName: "",
         userName: "",
         passWord: "",
-        conPassWord: "",
+        // conPassWord: "",
         email: "",
     });
 
     console.log(user);
-    const [errorMessage, setErrorMessage] = useState("");
+    // const [errorMessage, setErrorMessage] = useState("");
     const handleSubmit = () => {
-        if (user.passWord != user.conPassWord) {
-            setErrorMessage("Passwords do not match");
-            return;
-        }
+        // if (user.passWord != user.conPassWord) {
+        //     setErrorMessage("Passwords do not match");
+        //     return;
+        // }
         axios.post('http://localhost:3000/api/register',user)
         .then(res => res.data)
+        .catch(err => console.log(err))
     };
 
     const handleChange = (e) => {
@@ -71,15 +72,15 @@ const Register = () => {
                                 value={user.passWord}
                                 handleChange={handleChange}
                             />
-                            <Input
+                            {/* <Input
                                 placeholder="ยืนยันรหัสผ่าน"
                                 name={"conPassWord"}
                                 value={user.conPassWord}
                                 handleChange={handleChange}
-                            />
-                            {errorMessage && (
+                            /> */}
+                            {/* {errorMessage && (
                         <Alert message={errorMessage} type="error" showIcon />
-                    )}
+                    )} */}
                         </div>
                     </div>
                     <Btn title="สมัครสมาชิก" handleSubmit={handleSubmit} />
