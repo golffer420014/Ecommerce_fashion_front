@@ -2,6 +2,7 @@ import Btn from "../../components/Btn";
 import Input from "../../components/Input";
 import { useState } from "react";
 import { Alert } from "antd";
+import axios from "axios";
 const Register = () => {
     const [user, setUser] = useState({
         firstName: "",
@@ -19,6 +20,8 @@ const Register = () => {
             setErrorMessage("Passwords do not match");
             return;
         }
+        axios.post('http://localhost:3000/api/register',user)
+        .then(res => res.data)
     };
 
     const handleChange = (e) => {
