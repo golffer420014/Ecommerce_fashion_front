@@ -1,29 +1,38 @@
+/* eslint-disable no-unused-vars */
 import Btn from "../../components/Btn";
 import Input from "../../components/Input";
 import { useState } from "react";
 import { Alert } from "antd";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const Register = () => {
+    const navigate = useNavigate()
     const [user, setUser] = useState({
         firstName: "",
         lastName: "",
         userName: "",
-        passWord: "",
-        // conPassWord: "",
+        password: "",
+        conPassword: "",
         email: "",
     });
 
     console.log(user);
-    // const [errorMessage, setErrorMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
     const handleSubmit = () => {
-        // if (user.passWord != user.conPassWord) {
-        //     setErrorMessage("Passwords do not match");
-        //     return;
-        // }
-        axios.post('http://localhost:3000/api/register',user)
-        .then(res => res.data)
-        .catch(err => console.log(err))
+        const { conPassword, ...userData } = user;
+        if (user.password !== user.conPassword) {
+            setErrorMessage("Passwords do not match");
+            return;
+        }
+        axios.post('http://localhost:3000/api/register', userData)
+            .then(res => {
+                if (res && res.data) {
+                    navigate('/regis-address');
+                }
+            })
+            .catch(err => console.log(err));
     };
+    
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -68,19 +77,19 @@ const Register = () => {
                             />
                             <Input
                                 placeholder="รหัสผ่าน"
-                                name={"passWord"}
-                                value={user.passWord}
+                                name={"password"}
+                                value={user.password}
                                 handleChange={handleChange}
                             />
-                            {/* <Input
+                            <Input
                                 placeholder="ยืนยันรหัสผ่าน"
-                                name={"conPassWord"}
-                                value={user.conPassWord}
+                                name={"conPassword"}
+                                value={user.conPassword}
                                 handleChange={handleChange}
-                            /> */}
-                            {/* {errorMessage && (
+                            />
+                            {errorMessage && (
                         <Alert message={errorMessage} type="error" showIcon />
-                    )} */}
+                    )}
                         </div>
                     </div>
                     <Btn title="สมัครสมาชิก" handleSubmit={handleSubmit} />
