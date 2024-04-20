@@ -6,7 +6,7 @@ import { Alert } from "antd";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const Register = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const [user, setUser] = useState({
         firstName: "",
         lastName: "",
@@ -24,15 +24,15 @@ const Register = () => {
             setErrorMessage("Passwords do not match");
             return;
         }
-        axios.post('http://localhost:3000/api/register', userData)
-            .then(res => {
+        axios
+            .post("http://localhost:3000/api/register", userData)
+            .then((res) => {
                 if (res && res.data) {
-                    navigate('/regis-address');
+                    navigate("/regis-address");
                 }
             })
-            .catch(err => console.log(err));
+            .catch((err) => console.log(err));
     };
-    
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -88,12 +88,15 @@ const Register = () => {
                                 handleChange={handleChange}
                             />
                             {errorMessage && (
-                        <Alert message={errorMessage} type="error" showIcon />
-                    )}
+                                <Alert
+                                    message={errorMessage}
+                                    type="error"
+                                    showIcon
+                                />
+                            )}
                         </div>
                     </div>
                     <Btn title="สมัครสมาชิก" handleSubmit={handleSubmit} />
-                    
                 </div>
             </div>
         </div>
